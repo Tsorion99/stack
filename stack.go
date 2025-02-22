@@ -1,6 +1,8 @@
 package stack
 
-import "errors"
+import (
+	"errors"
+)
 
 type stack[T any] struct {
 	data []T
