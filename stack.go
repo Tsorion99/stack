@@ -30,3 +30,11 @@ func (s *stack[T]) Top() (*T, error) {
 	}
 	return &s.data[len(s.data)-1], nil
 }
+
+func (s *stack[T]) Len() int {
+	return len(s.data)
+}
+
+func (s *stack[T]) Empty() bool {
+	return len(s.data) == 0
+}
