@@ -55,10 +55,10 @@ func TestTopNewStack(t *testing.T) {
 	v, err := s.Top()
 
 	if v != nil {
-		t.Fatalf("Top() return not nil")
+		t.Fatal("Top() return not nil")
 	}
 	if err == nil || err.Error() != "stack is empty" {
-		t.Fatalf("Top() = nil, nil, want match for nil, \"stack is empty\"")
+		t.Fatal("Top() = nil, nil, want match for nil, \"stack is empty\"")
 	}
 }
 
@@ -69,9 +69,43 @@ func TestTopEmptyStack(t *testing.T) {
 	v, err := s.Top()
 
 	if v != nil {
-		t.Fatalf("Top() return not nil")
+		t.Fatal("Top() return not nil")
 	}
 	if err == nil || err.Error() != "stack is empty" {
-		t.Fatalf("Top() = nil, nil, want match for nil, \"stack is empty\"")
+		t.Fatal("Top() = nil, nil, want match for nil, \"stack is empty\"")
+	}
+}
+
+func TestLen(t *testing.T) {
+	s := MakeStack[int](0)
+	if len := s.Len(); len != 0 {
+		t.Fatalf("Len() = %d, want match for 0", len)
+	}
+
+	s.Push(9, 6, 3)
+	if len := s.Len(); len != 3 {
+		t.Fatalf("Len() = %d, want match for 3", len)
+	}
+
+	s.Pop()
+	if len := s.Len(); len != 2 {
+		t.Fatalf("Len() = %d, want match for 2", len)
+	}
+}
+
+func TestEmpty(t *testing.T) {
+	s := MakeStack[int](0)
+	if e := s.Empty(); e != true {
+		t.Fatalf("Empty() = %t, want match for true", e)
+	}
+
+	s.Push(9, 6)
+	if e := s.Empty(); e != false {
+		t.Fatalf("Empty() = %t, want match for false", e)
+	}
+
+	s.Pop()
+	if e := s.Empty(); e != true {
+		t.Fatalf("Empty() = %t, want match for true", e)
 	}
 }
