@@ -99,7 +99,7 @@ func TestEmpty(t *testing.T) {
 		t.Fatalf("Empty() = %t, want match for true", e)
 	}
 
-	s.Push(9, 6)
+	s.Push(9)
 	if e := s.Empty(); e != false {
 		t.Fatalf("Empty() = %t, want match for false", e)
 	}
